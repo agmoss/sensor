@@ -2,9 +2,9 @@ var fs = require("fs");
 
 module.exports = {
 
-    get : function (app) {
-        app.get('/listData', function (req, res) {
-            fs.readFile( __dirname + "/" + "device.json", 'utf8', function (err, data) {
+    get : (app) => {
+        app.get('/listData', (req, res) => {
+            fs.readFile( "./device.json", 'utf8',  (err, data) => {
                console.log(data);
                res.end(data);
             });
@@ -12,13 +12,14 @@ module.exports = {
     },
     
     
-    getById : function(app){
+    getById : (app)=>{
 
-        app.get('/:id', function (req, res) {
+        app.get('/:id', (req, res) => {
             // First read existing users.
-            fs.readFile( __dirname + "/" + "device.json", 'utf8', function (err, data) {
+            fs.readFile( "./device.json", 'utf8', (err, data) => {
                var devices = JSON.parse(data);
 
+               // Locate devices
                 for(var i = 0; i < devices.length; i++)
                 {
                     if(devices[i].stream.DeviceID == req.params.id)

@@ -2,10 +2,10 @@ var fs = require("fs");
 
 module.exports = {
 
-    post : function(app) {
-        app.post('/addStream', function (req, res) {
+    post : (app) => {
+        app.post('/addStream', (req, res) => {
             // Read in existing data
-            fs.readFile( __dirname + "/" + "device.json", 'utf8', function (err, data) {
+            fs.readFile("./device.json", 'utf8', (err, data) => {
                data = JSON.parse(data);
                // Add new data to the json array
                data.push(stream)
